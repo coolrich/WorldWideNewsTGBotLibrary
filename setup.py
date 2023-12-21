@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='wwntgbotlibrary',
     version='',
-    packages=['wwn-tgbot-lib'],
+    packages=['wwntgbotlib'],
     url='',
     license='',
     author='CraftBox',
