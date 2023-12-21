@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='WorldWideNewsTGBotLibrary',
+    name='wwntgbotlibrary',
     version='',
     packages=['wwn-tgbot-lib'],
     url='',
