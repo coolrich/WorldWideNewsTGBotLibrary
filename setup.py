@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='wwntgbotlibrary',
-    version='',
+    version='1.0.0',
     packages=['wwntgbotlib'],
     url='',
     license='',
