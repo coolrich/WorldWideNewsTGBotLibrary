@@ -9,12 +9,14 @@ from selenium import webdriver
 from wwntgbotlib.country_codes import CountryCodes
 from wwntgbotlib.loader_interface import LoaderInterface
 from wwntgbotlib.news_article import NewsArticle
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class NewsScraperInterface(ABC, LoaderInterface):
-    def __init__(self, a_logger: logging.Logger, address: str, country: CountryCodes):
+    def __init__(self, address: str, country: CountryCodes):
         self.__address = address
-        self.__logger = a_logger
         self.__country = country
 
     # Create properties for address
@@ -38,38 +40,39 @@ class NewsScraperInterface(ABC, LoaderInterface):
     #     return page_source
 
     def __get_html_source(self, url):
-        self.__logger.debug("Start of __get_html_source")
+        logger.debug("Start of __get_html_source")
 
         response = requests.get(url)
         if response.status_code == 200:
             page_source = response.text
-            self.__logger.debug("Successfully fetched HTML source")
+            logger.debug("Successfully fetched HTML source")
         else:
-            self.__logger.error("Failed to fetch HTML source: {}".format(response.status_code))
+            logger.error("Failed to fetch HTML source: {}".format(response.status_code))
             page_source = None
 
-        self.__logger.debug("End of __get_html_source")
+        logger.debug("End of __get_html_source")
         return page_source
 
-    def __get_html_source_from_folder(self, absolute_file_path):
-        self.__logger.debug("Start of __get_html_source_from_folder")
+    @staticmethod
+    def __get_html_source_from_folder(absolute_file_path):
+        logger.debug("Start of __get_html_source_from_folder")
         with open(absolute_file_path, "r", encoding="UTF-8") as f:
             html_str = f.read()
         page_source = html_str
-        self.__logger.debug(f"End of __get_html_source_from_folder: {absolute_file_path}")
+        logger.debug(f"End of __get_html_source_from_folder: {absolute_file_path}")
         return page_source
 
     # add hints to method
     def __parse_news(self, base_url, html_source) -> List[NewsArticle]:
-        self.__logger.debug(f"Start of parsing {html_source}")
+        logger.debug(f"Start of parsing {html_source}")
         base_url = base_url.split('.com')[0] + '.com'
         bs = BeautifulSoup(html_source, 'html5lib')
         try:
             news_list: list[NewsArticle] = self._parser(base_url, bs)
             return news_list
         except Exception as e:
-            self.__logger.error(f"An unexpected error when parsing {base_url}: {e}")
-        self.__logger.debug(f"End of parsing {html_source}")
+            logger.error(f"An unexpected error when parsing {base_url}: {e}")
+        logger.debug(f"End of parsing {html_source}")
         return []
 
     @abstractmethod
