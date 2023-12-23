@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from keyboard_button_names import KeyboardButtonsNames as kbn
+from wwntgbotlib.keyboard_button_names import KeyboardButtonsNames as kbn
 
 logger = logging.getLogger(__name__)
 
