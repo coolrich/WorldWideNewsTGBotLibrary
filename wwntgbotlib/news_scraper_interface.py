@@ -7,8 +7,8 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from country_codes import CountryCodes
-from loader_interface import LoaderInterface
-from news_article import NewsArticle
+from wwntgbotlib.loader_interface import LoaderInterface
+from wwntgbotlib.news_article import NewsArticle
 
 
 class NewsScraperInterface(ABC, LoaderInterface):

@@ -1,8 +1,8 @@
 import textwrap
 from urllib.parse import urljoin
-from country_codes import CountryCodes
+from wwntgbotlib.country_codes import CountryCodes
 from wwntgbotlib.news_article import NewsArticle
-from news_scraper_interface import NewsScraperInterface
+from wwntgbotlib.news_scraper_interface import NewsScraperInterface
 import logging
 
 logger = logging.getLogger(__name__)

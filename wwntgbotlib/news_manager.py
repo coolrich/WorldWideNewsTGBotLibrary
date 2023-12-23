@@ -4,8 +4,8 @@ from google.cloud import storage
 from google.cloud.exceptions import NotFound
 
 from wwntgbotlib.country_codes import CountryCodes
-from news_article import NewsArticle
-from news_scrapers import UANewsScraper, WorldNewsScraper
+from wwntgbotlib.news_article import NewsArticle
+from wwntgbotlib.news_scrapers import UANewsScraper, WorldNewsScraper
 import logging
 
 logger = logging.getLogger(__name__)
