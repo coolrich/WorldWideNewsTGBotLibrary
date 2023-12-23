@@ -3,7 +3,7 @@ import pickle
 from google.cloud import storage
 from google.cloud.exceptions import NotFound
 
-from country_codes import CountryCodes
+from wwntgbotlib.country_codes import CountryCodes
 from news_article import NewsArticle
 from news_scrapers import UANewsScraper, WorldNewsScraper
 import logging
