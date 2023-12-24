@@ -5,7 +5,6 @@ from typing import List, Any
 
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
 from wwntgbotlib.country_codes import CountryCodes
 from wwntgbotlib.loader_interface import LoaderInterface
 from wwntgbotlib.news_article import NewsArticle
