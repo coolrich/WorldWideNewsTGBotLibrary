@@ -5,3 +5,11 @@
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/WorldWideNewsTGBotLibrary.iml
+/wwntgbotlib/__pycache__/__init__.cpython-310.pyc
+/wwntgbotlib/__pycache__/country_codes.cpython-310.pyc
+/wwntgbotlib/__pycache__/keyboard_button_names.cpython-310.pyc
+/wwntgbotlib/__pycache__/loader_interface.cpython-310.pyc
+/wwntgbotlib/__pycache__/news_article.cpython-310.pyc
+/wwntgbotlib/__pycache__/news_scraper_interface.cpython-310.pyc
+/wwntgbotlib/__pycache__/news_scrapers.cpython-310.pyc
+/requirements.txt
