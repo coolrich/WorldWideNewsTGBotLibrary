@@ -22,16 +22,19 @@ class NewsManager:
     def get_filename(country_code: CountryCodes):
         return f"{country_code.name}-news.pkl"
 
-    def update_news(self):
+    def update_news(self) -> dict[CountryCodes, int]:
+        news_count_dict = {}
         for scraper in self.__scrapers:
             logger.debug("In task get_news")
             filename = NewsManager.get_filename(scraper.country_code)
             logger.info(f"Loading {scraper.country_code} news from {scraper.address}...")
             timestamp, news_list = scraper.load_news()
             NewsManager.save_to_gcs_bucket(filename, timestamp, news_list)
+            news_count_dict[scraper.country_code] = len(news_list)
             logger.info(f"News has been saved to {filename} on GCS!")
             logger.info(f"Number of {scraper.country_code} news: {len(news_list)}")
             logger.debug(f"End of task {scraper.address}")
+        return news_count_dict
 
     @staticmethod
     def save_to_gcs_bucket(filename, timestamp: float, news_list: list[NewsArticle]) -> None:
