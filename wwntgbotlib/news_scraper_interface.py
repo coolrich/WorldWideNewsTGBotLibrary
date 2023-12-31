@@ -28,20 +28,10 @@ class NewsScraperInterface(ABC, LoaderInterface):
     def country_code(self):
         return self.__country
 
-    # def __get_html_source(self, url):
-    #     self.__logger.debug("Start of __get_html_source")
-    #     # time.sleep(3)
-    #     driver = webdriver.Chrome()
-    #     driver.get(url)
-    #     page_source = driver.execute_script('return document.documentElement.outerHTML')
-    #     driver.quit()
-    #     self.__logger.debug("End of __get_html_source")
-    #     return page_source
 
     @staticmethod
     def __get_html_source(url):
         logger.debug("Start of __get_html_source")
-
         response = requests.get(url)
         if response.status_code == 200:
             page_source = response.text
@@ -64,7 +54,7 @@ class NewsScraperInterface(ABC, LoaderInterface):
 
     # add hints to method
     def __parse_news(self, base_url, html_source) -> List[NewsArticle]:
-        logger.debug(f"Start of parsing {html_source}")
+        logger.debug(f"Start of parsing {base_url}")
         base_url = base_url.split('.com')[0] + '.com'
         bs = BeautifulSoup(html_source, 'html5lib')
         try:

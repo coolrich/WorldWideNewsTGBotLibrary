@@ -8,7 +8,7 @@ from wwntgbotlib.news_article import NewsArticle
 from wwntgbotlib.news_scrapers import UANewsScraper, WorldNewsScraper
 import logging
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 class NewsManager:
@@ -134,12 +134,13 @@ class NewsManager:
 
 
 if __name__ == "__main__":
-    # logging.basicConfig(
-    #     level=logging.DEBUG,
-    #     format='%(asctime)s - %(filename)s - %(levelname)s - %(lineno)d - %(message)s',
-    #     handlers=[
-    #         logging.StreamHandler(),
-    #     ]
-    # )
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(filename)s - %(levelname)s - %(lineno)d - %(message)s',
+        handlers=[
+            logging.StreamHandler(),
+        ]
+    )
+    logger = logging.getLogger(__name__)
     news_manager = NewsManager()
     print(news_manager.update_news())
