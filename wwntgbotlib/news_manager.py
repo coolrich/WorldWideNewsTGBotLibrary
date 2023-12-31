@@ -134,12 +134,12 @@ class NewsManager:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format='%(asctime)s - %(filename)s - %(levelname)s - %(lineno)d - %(message)s',
-        handlers=[
-            logging.StreamHandler(),
-        ]
-    )
+    # logging.basicConfig(
+    #     level=logging.DEBUG,
+    #     format='%(asctime)s - %(filename)s - %(levelname)s - %(lineno)d - %(message)s',
+    #     handlers=[
+    #         logging.StreamHandler(),
+    #     ]
+    # )
     news_manager = NewsManager()
-    news_manager.update_news()
+    print(news_manager.update_news())
