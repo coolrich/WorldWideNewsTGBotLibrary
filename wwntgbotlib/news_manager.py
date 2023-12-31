@@ -8,7 +8,7 @@ from wwntgbotlib.news_article import NewsArticle
 from wwntgbotlib.news_scrapers import UANewsScraper, WorldNewsScraper
 import logging
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class NewsManager:
