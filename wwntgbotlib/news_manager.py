@@ -141,6 +141,6 @@ if __name__ == "__main__":
             logging.StreamHandler(),
         ]
     )
-    logger = logging.getLogger(__name__)
+    # logger = logging.getLogger(__name__)
     news_manager = NewsManager()
     print(news_manager.update_news())
