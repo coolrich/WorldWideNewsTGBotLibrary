@@ -34,9 +34,9 @@ class NewsScraperInterface(ABC, LoaderInterface):
         response = requests.get(url)
         if response.status_code == 200:
             page_source = response.text
-            logger.debug(f"Successfully fetched HTML source from {url}")
+            logger.info(f"Successfully fetched HTML source from {url}")
         else:
-            logger.error("Failed to fetch HTML source: {}".format(response.status_code))
+            logger.info("Failed to fetch HTML source: {}".format(response.status_code))
             page_source = None
 
         logger.debug("End of __get_html_source")
