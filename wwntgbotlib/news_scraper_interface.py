@@ -61,7 +61,7 @@ class NewsScraperInterface(ABC, LoaderInterface):
             return news_list
         except Exception as e:
             logger.error(f"An unexpected error when parsing {base_url}: {e}")
-        logger.debug(f"End of parsing {html_source}")
+        logger.debug(f"End of parsing {base_url}")
         return []
 
     @abstractmethod
