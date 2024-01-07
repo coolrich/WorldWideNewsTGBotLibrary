@@ -29,7 +29,7 @@ class NewsScraperInterface(ABC, LoaderInterface):
         return self.__country
 
     @staticmethod
-    def __get_html_source(url):
+    def __get_html_source(url) -> (str, str):
         logger.debug("Start of __get_html_source")
         response = requests.get(url)
         if response.status_code == 200:
@@ -45,7 +45,8 @@ class NewsScraperInterface(ABC, LoaderInterface):
     @staticmethod
     def __get_html_source_from_folder(absolute_file_path):
         logger.debug("Start of __get_html_source_from_folder")
-        with open(absolute_file_path, "r", encoding="UTF-8") as f:
+        encoding = "UTF-8"
+        with open(absolute_file_path, "r", encoding=encoding) as f:
             html_str = f.read()
         page_source = html_str
         logger.debug(f"End of __get_html_source_from_folder: {absolute_file_path}")
@@ -55,7 +56,7 @@ class NewsScraperInterface(ABC, LoaderInterface):
     def __parse_news(self, base_url, html_source) -> List[NewsArticle]:
         logger.debug(f"Start of parsing {base_url}")
         base_url = base_url.split('.com')[0] + '.com'
-        bs = BeautifulSoup(html_source, 'html5lib', from_encoding='utf-8')
+        bs = BeautifulSoup(html_source, 'html5lib')
         try:
             news_list: list[NewsArticle] = self._parser(base_url, bs)
             return news_list

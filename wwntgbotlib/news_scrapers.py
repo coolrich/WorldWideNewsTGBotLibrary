@@ -1,4 +1,5 @@
 import textwrap
+from typing import List
 from urllib.parse import urljoin
 from wwntgbotlib.country_codes import CountryCodes
 from wwntgbotlib.news_article import NewsArticle
@@ -38,7 +39,7 @@ class WorldNewsScraper(NewsScraperInterface):
     def __init__(self, an_address: str = r"https://www.bbc.com/news"):
         super().__init__(an_address, CountryCodes.WORLD)
 
-    def _parser(self, base_url, bs):
+    def _parser(self, base_url, bs) -> List[NewsArticle]:
         news_list = []
         for post in bs.find_all("div", {"data-testid": "edinburgh-card"}):
             try:
