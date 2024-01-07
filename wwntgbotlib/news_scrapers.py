@@ -40,21 +40,12 @@ class WorldNewsScraper(NewsScraperInterface):
 
     def _parser(self, base_url, bs):
         news_list = []
-        posts = bs.find(id='latest-stories-tab-container', recursive=True)
-        posts = posts.find_all('div', 'gs-c-promo')
-        for post in posts:
+        for post in bs.find_all("div", {"data-testid": "edinburgh-card"}):
             try:
-                heading = post.find('a').find('h3').text
-                p_tag = post.find('p')
-                if p_tag:
-                    text = p_tag.get_text()
-                else:
-                    continue
-                rel_link = post.find('a')['href']
-                full_url = urljoin(base_url.rstrip('/') + '/', rel_link.lstrip('/'))
-                logger.debug(f"Heading: {heading}")
-                logger.debug(f"Url: {full_url}")
-                logger.debug(f"Text: {text}\n")
+                heading = post.find("h2").get_text(strip=True)
+                text = post.find("p").get_text(strip=True) or ""  # Handle missing paragraphs
+                full_url = urljoin(base_url.rstrip("/"), post.find("a")["href"].lstrip("/"))
+                logging.info(f"Heading: {heading}\nUrl: {full_url}\nText: {text}\n")
                 news_list.append(NewsArticle(heading, text, full_url))
             except AttributeError as e:
                 logger.error(f"AttributeError in bbc parser: {e}")
@@ -77,6 +68,5 @@ if __name__ == '__main__':
     logger.debug("Start of the __main__() method in NewsScraper class")
     ns = WorldNewsScraper()
     data = ns.load_news()
-    logger.debug("UA news:")
     logger.debug(f"Count of {ns.country_code} news: {len(data[1])}")
     logger.debug("End of the __main__() method in NewsScraper class")
