@@ -41,7 +41,8 @@ class WorldNewsScraper(NewsScraperInterface):
 
     def _parser(self, base_url, bs) -> List[NewsArticle]:
         news_list = []
-        for post in bs.find_all("div", {"data-testid": "edinburgh-card"}):
+        posts = bs.find_all("div", {"data-testid": "edinburgh-card"})
+        for post in posts:
             try:
                 heading = post.find("h2").get_text(strip=True)
                 text = post.find("p").get_text(strip=True) or ""  # Handle missing paragraphs
