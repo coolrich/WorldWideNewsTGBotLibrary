@@ -48,7 +48,7 @@ class WorldNewsScraper(NewsScraperInterface):
                 logging.info(f"Heading: {heading}\nUrl: {full_url}\nText: {text}\n")
                 news_list.append(NewsArticle(heading, text, full_url))
             except AttributeError as e:
-                logger.error(f"AttributeError in bbc parser: {e}")
+                logger.warning(f"AttributeError in bbc parser: {e}")
                 continue
         logger.debug("End of parse_bbc")
         return news_list
