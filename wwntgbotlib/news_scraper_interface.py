@@ -28,7 +28,6 @@ class NewsScraperInterface(ABC, LoaderInterface):
     def country_code(self):
         return self.__country
 
-
     @staticmethod
     def __get_html_source(url):
         logger.debug("Start of __get_html_source")
@@ -56,7 +55,7 @@ class NewsScraperInterface(ABC, LoaderInterface):
     def __parse_news(self, base_url, html_source) -> List[NewsArticle]:
         logger.debug(f"Start of parsing {base_url}")
         base_url = base_url.split('.com')[0] + '.com'
-        bs = BeautifulSoup(html_source, 'html5lib')
+        bs = BeautifulSoup(html_source, 'html5lib', from_encoding='utf-8')
         try:
             news_list: list[NewsArticle] = self._parser(base_url, bs)
             return news_list
