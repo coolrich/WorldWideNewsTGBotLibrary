@@ -29,14 +29,14 @@ class NewsScraperInterface(ABC, LoaderInterface):
         return self.__country
 
     @staticmethod
-    def __get_html_source(url) -> (str, str):
+    def __get_html_source(url) -> str:
         logger.debug("Start of __get_html_source")
         response = requests.get(url)
         if response.status_code == 200:
             page_source = response.text
-            logger.info(f"Successfully fetched HTML source from {url}")
+            logging.info(f"Successfully fetched HTML source from {url}")
         else:
-            logger.info("Failed to fetch HTML source: {}".format(response.status_code))
+            logging.info("Failed to fetch HTML source: {}".format(response.status_code))
             page_source = None
 
         logger.debug("End of __get_html_source")
