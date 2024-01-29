@@ -6,8 +6,8 @@ logger = logging.getLogger(__name__)
 
 
 class CountryCodes(Enum):
-    UA = [kbn.UA.value, ]
-    WORLD = [kbn.WORLD.value, ]
+    UA = [kbn.UA.value, "України"]
+    WORLD = [kbn.WORLD.value, "Світу"]
 
     @staticmethod
     def get_member_by_value(item):
