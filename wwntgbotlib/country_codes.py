@@ -25,9 +25,12 @@ class CountryCodes(Enum):
         """
 
         logger.debug("In CountryCodes in method get_member_by_value")
+        print("In CountryCodes in method get_member_by_value")
         if isinstance(item, str):
             logger.debug("In CountryCodes in method get_member_by_value: " + str(item))
+            print("In CountryCodes in method get_member_by_value: " + str(item))
             for country_code in CountryCodes:
+                print(f"Country code {country_code} compares with {item}")
                 if str(item) in country_code.value:
                     logger.debug("In CountryCodes return value: " + str(country_code))
                     return country_code
